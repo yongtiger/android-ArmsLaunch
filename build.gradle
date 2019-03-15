@@ -1,0 +1,39 @@
+///[ArmsComponent:config.gradle]Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+    dependencies {
+        ///[FIX BUG#API 'variantOutput.getProcessResources()' is obsolete and has been replaced with 'variantOutput.getProcessResourcesProvider()']
+        ///It's the bug in gradle version 3.3.x and in https://services.gradle.org/distributions/gradle-4.10.1-all.zip
+        ///You need to roll back to this version: 'com.android.tools.build:gradle:3.2.1' and https://services.gradle.org/distributions/gradle-4.6-all.zip
+        ///https://stackoverflow.com/questions/54198955/android-studio3-3-variantoutput-getprocessresources-is-obsolete-and-has-been-r
+        classpath 'com.android.tools.build:gradle:3.2.1'
+//        classpath 'com.android.tools.build:gradle:3.3.2'
+
+        ///[ArmsComponent#butterknife]如果 ButterKnife 插件和其他插件发生冲突而报错请试试 v8.4.0 版本的 ButterKnife 插件, 注意 v8.4.0 最高只能支持 com.android.tools.build:gradle:3.0.1
+//        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
+//        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'    ///[BUG#androidx.annotation]
+
+//        classpath 'com.google.dagger:dagger:2.21'
+
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
