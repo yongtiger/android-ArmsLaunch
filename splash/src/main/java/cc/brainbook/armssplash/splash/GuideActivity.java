@@ -17,13 +17,7 @@ public class GuideActivity extends AppCompatActivity {
 
         btnClose.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                //数据是使用Intent返回
-                Intent intent = new Intent();
-                //把返回数据存入Intent
-                intent.putExtra("isShowGuide", false);
-                //设置返回数据
-                GuideActivity.this.setResult(RESULT_OK, intent);
-                //关闭Activity
+                GuideActivity.this.setResult(RESULT_OK);
                 GuideActivity.this.finish();
             }
         });

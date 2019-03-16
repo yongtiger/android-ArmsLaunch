@@ -102,18 +102,16 @@ public class SplashActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_CODE_GUIDE:
                 if (resultCode == RESULT_OK) {
-                    saveFlag("isShowGuide", data.getBooleanExtra("isShowGuide", true));
+                    saveFlag("isShowGuide", false);
                 }
-
                 processRequestCodes(true);
                 return;
 
             /// other cases ...
 //            case REQUEST_CODE_GUIDE2:
 //                if (resultCode == RESULT_OK) {
-//                    saveFlag("isShowGuide2", data.getBooleanExtra("isShowGuide2", true));
+//                    saveFlag("isShowGuide2", false);
 //                }
-//
 //                processRequestCodes(true);
 //                return;
 
