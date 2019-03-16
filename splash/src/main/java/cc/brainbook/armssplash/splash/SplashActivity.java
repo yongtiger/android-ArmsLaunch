@@ -13,6 +13,9 @@ import java.util.NoSuchElementException;
 
 import androidx.annotation.Nullable;
 
+/**
+ * 用LinkedList实现多个引导页面逻辑
+ */
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
 
