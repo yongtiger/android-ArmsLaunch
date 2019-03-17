@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ///[ArmsSplash#去除启动白屏：layer-list背景图片] -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- ///属性android:opacity="opaque"是为了防止在启动的时候出现背景的闪烁 -->
+<!-- ///https://blog.csdn.net/CrazyMo_/article/details/79949334 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
 
     <!-- 设置整个屏幕背景颜色 -->
     <!--<item android:drawable="@android:color/black" />-->

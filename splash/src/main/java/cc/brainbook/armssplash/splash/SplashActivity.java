@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
  * 用LinkedList实现多个引导页面逻辑
  */
 ///SplashActivity要用Activity而不是AppCompatActivity，后者会自动加载ActionBar，而SplashActivity无需ActionBar
+///https://blog.csdn.net/today_work/article/details/79300181
 public class SplashActivity extends Activity {
     private static final String TAG = "TAG";
 
