@@ -1,10 +1,10 @@
 package cc.brainbook.armssplash.splash;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -16,7 +16,8 @@ import androidx.annotation.Nullable;
 /**
  * 用LinkedList实现多个引导页面逻辑
  */
-public class SplashActivity extends AppCompatActivity {
+///SplashActivity要用Activity而不是AppCompatActivity，后者会自动加载ActionBar，而SplashActivity无需ActionBar
+public class SplashActivity extends Activity {
     private static final String TAG = "TAG";
 
     private static final int REQUEST_CODE_GUIDE = 1;
