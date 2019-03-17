@@ -1,1 +1,1 @@
-include ':app', ':splash', ':main', ':CommonSDK', ':CommonService', ':CommonRes', ':module_zhihu', ':module_gank', ':guide', 'module_gold'
+include ':app', ':launch', ':main', ':CommonSDK', ':CommonService', ':CommonRes', ':module_zhihu', ':module_gank', ':guide', 'module_gold'

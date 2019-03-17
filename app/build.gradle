@@ -60,7 +60,7 @@ dependencies {
 //        runtimeOnly project(":module_zhihu")
 //        runtimeOnly project(":module_gank")
 //        runtimeOnly project(":module_gold")
-        implementation project(":splash")
+        implementation project(":launch")
         implementation project(":main")
         implementation project(":module_zhihu")
         implementation project(":module_gank")

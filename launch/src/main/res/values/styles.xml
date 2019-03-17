@@ -1,0 +1,32 @@
+<resources>
+    <!-- ///[Android 5.0以上实现隐藏标题栏和全屏显示] -->
+    <!-- ///[去掉ActionBar（即标题栏title）] -->
+    <!-- 如使用Activity -->
+    <!--<style name="LaunchTheme" parent="android:style/Theme.Black.NoTitleBar.Fullscreen">-->
+    <!-- 如使用AppCompatActivity -->
+    <style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
+    <!--<style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+
+        <!-- ///[去掉ActionBar（即标题栏title）] -->
+        <!-- 如android:style/Theme.Black.NoTitleBar.Fullscreen则不必设置了 -->
+        <item name="android:windowNoTitle">true</item>
+
+        <!-- ///[全屏显示] -->
+        <!-- 如android:style/Theme.Black.NoTitleBar.Fullscreen则不必设置了 -->
+        <item name="android:windowFullscreen">true</item>
+
+        <!-- ///[去除启动白屏：窗体透明] -->
+        <!-- 注意：设置窗体透明后有可能导致卡顿！所以建议用背景图片方式 -->
+        <!-- https://blog.csdn.net/mathcompfrac/article/details/77984735 -->
+        <!-- https://blog.csdn.net/kongbaidepao/article/details/52106866 -->
+        <!-- https://www.jianshu.com/p/1398ca679ae4 -->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <item name="android:windowIsTranslucent">false</item>
+
+        <!-- ///[去除启动白屏：layer-list背景图片] -->
+        <item name="android:windowBackground">@drawable/launch_layer_bg</item>
+
+        <item name="colorPrimaryDark">@android:color/black</item>
+    </style>
+</resources>
