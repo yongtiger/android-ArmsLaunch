@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import androidx.annotation.Nullable;
 
@@ -79,7 +80,7 @@ public class LaunchActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "LaunchActivity# onCreate(): ");
+        Log.d(TAG, "LaunchActivity# onCreate()# ");
         super.onCreate(savedInstanceState);
 
 
@@ -105,37 +106,37 @@ public class LaunchActivity extends Activity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "LaunchActivity# onStart(): ");
+        Log.d(TAG, "LaunchActivity# onStart()# ");
         super.onStart();
     }
 
     @Override
     protected void onRestart() {
-        Log.d(TAG, "LaunchActivity# onRestart(): ");
+        Log.d(TAG, "LaunchActivity# onRestart()# ");
         super.onRestart();
     }
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "LaunchActivity# onResume(): ");
+        Log.d(TAG, "LaunchActivity# onResume()# ");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "LaunchActivity# onPause(): ");
+        Log.d(TAG, "LaunchActivity# onPause()# ");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "LaunchActivity# onStop(): ");
+        Log.d(TAG, "LaunchActivity# onStop()# ");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "LaunchActivity# onDestroy(): ");
+        Log.d(TAG, "LaunchActivity# onDestroy()# ");
         super.onDestroy();
     }
 
@@ -214,7 +215,7 @@ public class LaunchActivity extends Activity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "LaunchActivity# onActivityResult(): requestCode: " + requestCode + ", resultCode: " + resultCode);
+        Log.d(TAG, "LaunchActivity# onActivityResult()# requestCode: " + requestCode + ", resultCode: " + resultCode);
 
         ///[配置多个引导页面#4]处理各个引导页面的返回结果
         switch (requestCode) {
@@ -238,8 +239,9 @@ public class LaunchActivity extends Activity {
 
     /**
      * （需要配置代码！）[配置多个初始化过程#1]设置初始化过程的数量，如果没有任何初始化过程，则为0
+     * 注意：使用AtomicInteger保证多线程安全
      */
-    private volatile int initCount = 0;
+    private AtomicInteger initCount = new AtomicInteger(0);
 
     /**
      * （需要配置代码！）[配置多个初始化过程#2]在init()中添加初始化过程调用代码
@@ -254,12 +256,18 @@ public class LaunchActivity extends Activity {
      * （需要配置代码！）[配置多个初始化过程#3]初始化过程调用代码，注意：完成后必须调用initComplete()
      */
     private void initLoadUpgradeInfo() {
+        Log.d(TAG, "LaunchActivity# initLoadUpgradeInfo()# ");
+
         // todo ...
-        ///注意：完成后必须调用initComplete()
+        ///注意：完成后无论成功或失败都必须调用initComplete()
+        initComplete();
     }
     private void initLoadGuideInfo() {
+        Log.d(TAG, "LaunchActivity# initLoadGuideInfo()# ");
+
         // todo ...
-        ///注意：完成后必须调用initComplete()
+        ///注意：完成后无论成功或失败都必须调用initComplete()
+        initComplete();
     }
 
     /**
@@ -268,8 +276,10 @@ public class LaunchActivity extends Activity {
      * 每完成一个初始化过程就减一，直到为负数表示全部初始化过程都完成了，此时再执行退出LaunchActivity、进入MainActivity
      */
     private void initComplete() {
+        Log.d(TAG, "LaunchActivity# initComplete()# ");
+
         ///判断初始化过程是否全部结束
-        if (--initCount < 0) {
+        if (initCount.decrementAndGet() < 0) {
             startActivity(new Intent(this, TestMainActivity.class));
             finish();
         }
